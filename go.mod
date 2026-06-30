@@ -1,4 +1,4 @@
-module launcher
+module chemy_launcher
 
 go 1.23.0
 
