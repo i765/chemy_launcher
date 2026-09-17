@@ -3,4 +3,6 @@
 
 export function GetAvailablePorts():Promise<Array<string>>;
 
-export function Greet(arg1:string):Promise<string>;
+export function ShowError(arg1:string,arg2:string):Promise<void>;
+
+export function ShowMessage(arg1:string):Promise<void>;

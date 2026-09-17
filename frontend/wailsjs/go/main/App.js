@@ -6,6 +6,10 @@ export function GetAvailablePorts() {
   return window['go']['main']['App']['GetAvailablePorts']();
 }
 
-export function Greet(arg1) {
-  return window['go']['main']['App']['Greet'](arg1);
+export function ShowError(arg1, arg2) {
+  return window['go']['main']['App']['ShowError'](arg1, arg2);
+}
+
+export function ShowMessage(arg1) {
+  return window['go']['main']['App']['ShowMessage'](arg1);
 }

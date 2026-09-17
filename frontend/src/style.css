@@ -18,10 +18,6 @@
   --button-background-color-active: #444444;
 }
 
-html {
-  background-color: var(--background-color);
-  text-align: center;
-}
 *,
 *::after,
 *::before {
@@ -36,6 +32,7 @@ body {
   overflow: hidden;
   min-width: 550px;
   font-family: "internal-app-font";
+  background-color: var(--background-color);
 }
 
 #app {
@@ -44,7 +41,6 @@ body {
 
 .header {
   height: 38px;
-  background-color: #222222;
   border-bottom: 1px solid var(--border-color);
   display: flex;
   flex-shrink: 0;
@@ -67,6 +63,7 @@ body {
   }
 
   button {
+    position: relative;
     mask-image: url("./assets/svg/close.svg");
     width: 42px;
     mask-size: 18px 18px;
@@ -80,5 +77,6 @@ body {
     &:active {
       transform: scale(0.85);
     }
+    
   }
 }

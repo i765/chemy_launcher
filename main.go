@@ -2,15 +2,16 @@ package main
 
 import (
 	"embed"
+	"fmt"
 	"log"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
+	"github.com/wailsapp/wails/v2/pkg/runtime"
 	"go.bug.st/serial"
 )
 
-//go:embed all:frontend/dist
 var assets embed.FS
 
 // GetAvailablePorts запрашивает порты и возвращает их для фронтенда
@@ -21,6 +22,22 @@ func (a *App) GetAvailablePorts() []string {
 		return []string{} // возвращаем пустой массив в случае ошибки
 	}
 	return ports
+}
+
+func (a *App) ShowMessage(message string) {
+	runtime.MessageDialog(a.ctx, runtime.MessageDialogOptions{
+		Type:    runtime.InfoDialog,
+		Title:   "Информация",
+		Message: message,
+	})
+}
+
+func (a *App) ShowError(title string, mess string) {
+	runtime.MessageDialog(a.ctx, runtime.MessageDialogOptions{
+		Type:    runtime.ErrorDialog,
+		Title:   title,
+		Message: fmt.Sprintf("%s", mess),
+	})
 }
 
 func main() {
