@@ -50,7 +50,7 @@
 
 <main>
     <div class="header">
-        <div class="title">Launcher</div>
+        <div class="title">160-161</div>
         <div class="window-controls">
             <button class="wc-btn" id="minimizeApp" title="Выход" onclick={Quit}
             ></button>
