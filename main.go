@@ -4,6 +4,7 @@ import (
 	"embed"
 	"fmt"
 	"log"
+	"os/exec"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
@@ -40,13 +41,31 @@ func (a *App) ShowError(title string, mess string) {
 	})
 }
 
+// Запуск с ожиданием результата и получением вывода
+func (a *App) RunCmd(command string, args ...string) (bool, error) {
+	cmd := exec.Command(command, args...)
+
+	// Полностью игнорируем stdout и stderr, чтобы не тратить память
+	cmd.Stdout = nil
+	cmd.Stderr = nil
+
+	// Run() сам запускает процесс и ждет его окончания
+	err := cmd.Run()
+	if err != nil {
+		// Если программа вернула ошибку (код не 0) или не смогла запуститься
+		return false, fmt.Errorf("программа завершилась с ошибкой: %w", err)
+	}
+	// Программа успешно выполнилась и закрылась
+	return true, nil
+}
+
 func main() {
 	// Create an instance of the app structure
 	app := NewApp()
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:         "Launcher",
+		Title:         "Запуск программы",
 		Width:         550,
 		Height:        300,
 		Frameless:     true,

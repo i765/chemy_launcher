@@ -3,6 +3,8 @@
 
 export function GetAvailablePorts():Promise<Array<string>>;
 
+export function RunCmd(arg1:string,arg2:Array<string>):Promise<boolean>;
+
 export function ShowError(arg1:string,arg2:string):Promise<void>;
 
 export function ShowMessage(arg1:string):Promise<void>;

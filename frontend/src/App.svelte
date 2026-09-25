@@ -1,15 +1,16 @@
-<script lang="ts">
+<script>
     import { Quit } from "../wailsjs/runtime";
     import {
         GetAvailablePorts,
         ShowError,
         ShowMessage,
+        RunCmd,
     } from "../wailsjs/go/main/App";
     import { onMount } from "svelte";
 
-    let ports: string[] = [];
-    let selectedPort: string = "";
-    let password: string = "";
+    let ports = new Array();
+    let selectedPort = "";
+    let password = "";
 
     // Функция для обновления списка портов
     async function refreshPorts() {
@@ -36,8 +37,10 @@
         ShowMessage("Запуск эмулятора ");
     }
 
-    function runConfig() {
-        ShowMessage("Запуск конфигурации ");
+    async function runConfig() {
+      const args = new Array();
+      const success = await RunCmd("notepad.exe", args);
+
     }
 
     onMount(() => {
@@ -50,7 +53,7 @@
 
 <main>
     <div class="header">
-        <div class="title">160-161</div>
+        <div class="title">Запуск программы</div>
         <div class="window-controls">
             <button class="wc-btn" id="minimizeApp" title="Выход" onclick={Quit}
             ></button>
@@ -81,7 +84,7 @@
                 type="password"
                 name="password"
                 id="password"
-                value={password}
+                bind:value={password}
             />
         </div>
         <div class="spacer"></div>
